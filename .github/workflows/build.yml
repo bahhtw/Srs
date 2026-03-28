@@ -1,0 +1,30 @@
+name: Build-APK
+on: 
+  workflow_dispatch:
+    inputs:
+      app_name:
+        description: 'اسم التطبيق'
+        required: true
+        default: 'الصوتيات'
+      app_url:
+        description: 'رابط الموقع'
+        required: true
+        default: 'https://d98d86c9-a10a-4ee7-a1e7-90f53da6f736-00-adlegj4xr3m8.expo.spock.replit.dev/'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Convert website to app
+        uses: pavi2410/Web2App@v1
+        with:
+          name: ${{ github.event.inputs.app_name }}
+          url: ${{ github.event.inputs.app_url }}
+          
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: ./*.apk
