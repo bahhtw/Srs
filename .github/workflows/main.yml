@@ -1,0 +1,11 @@
+name: Build-APK
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pavi2410/Web2App@v1
+        with:
+          name: "الصوتيات"
+          url: "https://d98d86c9-a10a-4ee7-a1e7-90f53da6f736-00-adlegj4xr3m8.expo.spock.replit.dev/"
